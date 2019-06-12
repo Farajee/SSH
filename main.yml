@@ -21,4 +21,7 @@
             line: "PasswordAuthentication no"
           - regexp: "^#PermitEmptyPasswords no" 
             line: "PermitEmptyPasswords no"
-                 
+          - regexp: "^#ClientAliveInterval 0"
+            line: "ClientAliveInterval 240" 
+          - regexp: "^X11Forwarding yes"
+            line: "X11Forwarding no"        
