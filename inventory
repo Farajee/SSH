@@ -1,0 +1,10 @@
+[localpcs]
+#belos-pc1
+#belos ansible_user=belos
+#belos ansible_user=belos
+#belos-pc1
+#localhost
+#belos-pc1
+ansible
+#postgres
+
