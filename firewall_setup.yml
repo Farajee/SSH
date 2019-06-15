@@ -1,0 +1,49 @@
+---
+    - hosts: localpcs
+      become: yes
+      become_user: root
+      tasks:
+      - name: Enable ufw
+        ufw:
+          state: enabled      
+          rule: limit
+      - name: Allow port 22 (SSH)
+        ufw:
+          rule: limit  
+          port: 22
+          from_ip: "192.168.0.0/16"
+      - name: Allow port 80
+        ufw:
+          rule: allow
+          port: 80
+          from_ip: "192.168.0.0/16"
+        when: "inventory_hostname == 'belos-pc1'"  
+      - name: Allow port 3142
+        ufw:
+          rule: allow
+          port: 3142
+          from_ip: "192.168.0.0/16"
+      - name: Allow port 111 (nfs)    
+        ufw:
+           rule: allow
+           port: 111
+           proto: tcp
+           from_ip: "192.168.1.9"
+        when: "inventory_hostname == 'belos-pc1'"
+      - name: Allow port 111 (nfs)    
+        ufw:
+           rule: allow
+           port: 111
+           proto: udp
+           from_ip: "192.168.1.9"
+        when: "inventory_hostname == 'belos-pc1'"
+      - name: Allow port 2049 (nfs)
+        ufw:
+            rule: allow
+            port: 2049
+            from_ip: "192.168.0.0/16"
+      - name: Allow port 443
+        ufw:
+            rule: allow
+            port: 443
+            from_ip: "192.168.0.0/16"    
