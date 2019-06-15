@@ -5,7 +5,7 @@
       tasks:
       - name: Harden sshd configuration
         lineinfile:
-          path: /root/sshd_config
+          path: /etc/ssh/sshd_config
           line: '{{ item }}'
           state: present
           regexp: "^X11Forwarding yes"
