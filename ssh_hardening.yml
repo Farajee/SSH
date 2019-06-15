@@ -1,0 +1,21 @@
+---
+    - hosts: localpcs
+      become: yes
+      become_user: root
+      tasks:
+      - name: Harden sshd configuration
+        lineinfile:
+          path: /root/sshd_config
+          line: '{{ item }}'
+          state: present
+          regexp: "^X11Forwarding yes"
+        with_items:
+          - 'PermitRootLogin prohibit-password'
+          - 'MaxAuthTries 3'
+          - 'PubkeyAuthentication yes'
+          - 'IgnoreRhosts yes'
+          - 'PasswordAuthentication no'
+          - 'PermitEmptyPasswords no' 
+          - 'ClientAliveInterval 240'
+          - 'X11Forwarding no'
+         
